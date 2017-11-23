@@ -33,6 +33,7 @@ public class ProductsServlet extends HttpServlet {
 			Gson gson = new Gson();
 			String json = gson.toJson(allProducts);
 			response.getWriter().write(json);
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
