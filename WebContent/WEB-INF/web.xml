@@ -23,4 +23,14 @@
     <servlet-name>ProductsServlet</servlet-name>
     <url-pattern>/products</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>InitProductsDbServlet</display-name>
+    <servlet-name>InitProductsDbServlet</servlet-name>
+    <servlet-class>com.xpy.action.InitProductsDbServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InitProductsDbServlet</servlet-name>
+    <url-pattern>/initproducts</url-pattern>
+  </servlet-mapping>
 </web-app>

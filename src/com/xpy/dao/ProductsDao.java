@@ -15,8 +15,8 @@ public class ProductsDao {
 	@Test
 	public int insert(Products products) throws SQLException {
 		QueryRunner qr = new QueryRunner(JDBCUtils.getDataSource());
-		String sql = "insert into products values(?,?,?,?,?)";
-		Object[] param = {products.getId(),products.getBanji(),products.getName(),products.getDepartment(),products.getProduct_path()};
+		String sql = "insert into products(product_name,banji,author,department,product_path,type,tel) values(?,?,?,?,?,?,?)";
+		Object[] param = {products.getProduct_name(),products.getBanji(),products.getAuthor(),products.getDepartment(),products.getProduct_path(),products.getType(),products.getTel()};
 		int update = qr.update(sql, param);
 		return update;
 	}

@@ -1,5 +1,8 @@
 package com.xpy.action;
 
+
+import java.io.File;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -8,6 +11,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.junit.Test;
 
 import com.google.gson.Gson;
 import com.xpy.domain.Products;
@@ -20,9 +25,10 @@ public class ProductsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
+	 * @throws IOException 
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		//…Ë÷√±‡¬Î
 		response.setCharacterEncoding("utf-8");
 		
@@ -32,12 +38,14 @@ public class ProductsServlet extends HttpServlet {
 			List<Products> allProducts = productsService.selectAllProducts();
 			Gson gson = new Gson();
 			String json = gson.toJson(allProducts);
-			response.getWriter().write(json);
-			
+			response.getWriter().write(json);			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
+		
 	}
 
 	/**
