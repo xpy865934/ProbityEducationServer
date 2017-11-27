@@ -33,4 +33,14 @@
     <servlet-name>InitProductsDbServlet</servlet-name>
     <url-pattern>/initproducts</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>InsertMessageServlet</display-name>
+    <servlet-name>InsertMessageServlet</servlet-name>
+    <servlet-class>com.xpy.action.InsertMessageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InsertMessageServlet</servlet-name>
+    <url-pattern>/insertmessage</url-pattern>
+  </servlet-mapping>
 </web-app>
