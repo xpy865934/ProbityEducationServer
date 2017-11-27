@@ -29,4 +29,10 @@ public class ProductsService {
 		int insert = productsDao.insert(products);
 		return insert;
 	}
+	
+	public int selectMessageMaxId() throws SQLException {
+		ProductsDao productsDao = new ProductsDao();
+		int id = productsDao.selectProductMaxId();
+		return id;
+	}
 }

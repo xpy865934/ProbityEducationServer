@@ -32,12 +32,13 @@ public class ProductsServlet extends HttpServlet {
 		//设置编码
 		response.setCharacterEncoding("utf-8");
 		
-		//获取所有的商品
+		//获取所有的作品
 		ProductsService productsService = new ProductsService();
 		try {
 			List<Products> allProducts = productsService.selectAllProducts();
 			Gson gson = new Gson();
 			String json = gson.toJson(allProducts);
+			json="{\"result\":"+json+"}";
 			response.getWriter().write(json);			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

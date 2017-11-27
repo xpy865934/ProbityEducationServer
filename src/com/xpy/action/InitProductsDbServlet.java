@@ -29,27 +29,37 @@ public class InitProductsDbServlet extends HttpServlet {
 		ProductsService productsService = new ProductsService();
 		String t = Thread.currentThread().getContextClassLoader().getResource("").getPath();
 		int num = t.indexOf(".metadata");
+		String id="";
 		String path = t.substring(1, num).replace('/', '\\') + "ProbityEducationServer\\WebContent\\products_image";
 
 		File file = new File(path);
-		System.out.println(file.getAbsolutePath());
 
 		File[] images = file.listFiles();
-		System.out.println(images.length);
 		for (File file2 : images) {
 			String name = file2.getName();
 			String name1 = name.substring(0,name.lastIndexOf("."));
-			System.out.println(name);
-			System.out.println(name1);
 			String[] params = name1.split("--"); 
 			Products products = new Products();
+			
+			try {
+				id = String.valueOf(productsService.selectMessageMaxId()+1);
+				products.setId(id);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			products.setProduct_name(params[0]);
 			products.setBanji(params[1]);
 			products.setAuthor(params[2]);
 			products.setDepartment(params[3]);
 			products.setType(params[4]);
 			products.setTel(params[5]);
-			products.setProduct_path(getServletContext().getContextPath() + "/products_image/"+name);
+
+			//注意重命名需要路径一致
+			File newFile = new File(file2.getParent() + "/"+id+name.substring(name.lastIndexOf(".")));
+			
+			file2.renameTo(newFile);
+			products.setProduct_path(getServletContext().getContextPath() + "/products_image/"+newFile.getName());
 			try {
 				productsService.insertProduct(products);
 			} catch (SQLException e) {

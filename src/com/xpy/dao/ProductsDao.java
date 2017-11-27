@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.ArrayHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.junit.Test;
 
@@ -31,5 +32,16 @@ public class ProductsDao {
 		String sql = "select * from products";
 		List<Products> query = qr.query(sql, new BeanListHandler<Products>(Products.class));
 		return query;
+	}
+	
+	@Test
+	public int selectProductMaxId() throws SQLException {
+		QueryRunner qr = new QueryRunner(JDBCUtils.getDataSource());
+		String sql = "select max(id) from products";
+		Object[] query = qr.query(sql, new ArrayHandler());
+		if(query[0]==null) {
+			return 0;
+		}
+		return (int) query[0];
 	}
 }

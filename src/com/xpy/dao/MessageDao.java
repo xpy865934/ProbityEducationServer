@@ -1,14 +1,15 @@
 package com.xpy.dao;
 
 import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
-import com.sun.imageio.plugins.common.ImageUtil;
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.ArrayHandler;
+import org.junit.Test;
+
 import com.xpy.domain.Message;
 import com.xpy.utils.ImageUtils;
 import com.xpy.utils.JDBCUtils;
