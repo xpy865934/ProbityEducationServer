@@ -12,8 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.xpy.domain.Products;
 import com.xpy.service.ProductsService;
 
+
 /**
- * Servlet implementation class InitProductsDbServlet
+ * 初始化作品
+ * 将作品信息插入到数据库中并且对作品进行重新命名
+ * @author xpy
+ *
  */
 public class InitProductsDbServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -27,6 +31,7 @@ public class InitProductsDbServlet extends HttpServlet {
 		
 		//往数据库中插入作品信息
 		ProductsService productsService = new ProductsService();
+		//获取文件路径
 		String t = Thread.currentThread().getContextClassLoader().getResource("").getPath();
 		int num = t.indexOf(".metadata");
 		String id="";
@@ -42,10 +47,10 @@ public class InitProductsDbServlet extends HttpServlet {
 			Products products = new Products();
 			
 			try {
-				id = String.valueOf(productsService.selectMessageMaxId()+1);
+				id = String.valueOf(productsService.selectProductMaxId()+1);
 				products.setId(id);
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
+				System.err.println("获取ProductMaxId出错！");
 				e1.printStackTrace();
 			}
 			products.setProduct_name(params[0]);
@@ -58,12 +63,13 @@ public class InitProductsDbServlet extends HttpServlet {
 			//注意重命名需要路径一致
 			File newFile = new File(file2.getParent() + "/"+id+name.substring(name.lastIndexOf(".")));
 			
+			//重命名
 			file2.renameTo(newFile);
 			products.setProduct_path(getServletContext().getContextPath() + "/products_image/"+newFile.getName());
 			try {
 				productsService.insertProduct(products);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+				System.err.println("插入新作品信息出错！");
 				e.printStackTrace();
 			}
 		}
@@ -76,7 +82,6 @@ public class InitProductsDbServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

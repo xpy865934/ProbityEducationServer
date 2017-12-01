@@ -1,11 +1,6 @@
 package com.xpy.action;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.sql.SQLException;
 import java.util.Date;
 
 import javax.servlet.ServletException;
@@ -19,7 +14,9 @@ import com.xpy.service.MessageService;
 import com.xpy.utils.GetRequestJsonUtils;
 
 /**
- * Servlet implementation class InsertMessageServlet
+ * 插入新的留言信息
+ * @author xpy
+ *
  */
 public class InsertMessageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -35,6 +32,7 @@ public class InsertMessageServlet extends HttpServlet {
 		
 		Message message = gson.fromJson(json, Message.class);
 		
+		//获取ip地址和客户端
 		String ip = request.getRemoteAddr();
 		String userAgent = request.getHeader("user-agent");
 		
@@ -46,6 +44,7 @@ public class InsertMessageServlet extends HttpServlet {
 		try {
 			messageService.insertMessage(message);
 		} catch (Exception e) {
+			System.err.println("数据库插入留言信息出错！");
 			e.printStackTrace();
 		}
 	}
@@ -54,7 +53,6 @@ public class InsertMessageServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

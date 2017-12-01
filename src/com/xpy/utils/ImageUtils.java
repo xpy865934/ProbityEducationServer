@@ -7,6 +7,11 @@ import java.io.InputStream;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
+/**
+ * Õº∆¨π§æﬂ¿‡
+ * @author xpy
+ *
+ */
 public class ImageUtils {
 	
 	/**

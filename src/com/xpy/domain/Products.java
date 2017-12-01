@@ -1,5 +1,10 @@
 package com.xpy.domain;
 
+/**
+ * 作品信息类
+ * @author xpy
+ *
+ */
 public class Products {
 	private String id;
 	private String product_name;

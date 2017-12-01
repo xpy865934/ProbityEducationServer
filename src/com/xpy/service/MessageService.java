@@ -1,12 +1,13 @@
 package com.xpy.service;
 
-import java.sql.SQLException;
-
 import com.xpy.dao.MessageDao;
-import com.xpy.dao.ProductsDao;
 import com.xpy.domain.Message;
-import com.xpy.domain.Products;
 
+/**
+ * 留言信息Service
+ * @author xpy
+ *
+ */
 public class MessageService {
 	/**
 	 * 插入留言信息

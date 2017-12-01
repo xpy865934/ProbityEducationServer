@@ -6,14 +6,23 @@ import java.util.List;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.ArrayHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
-import org.junit.Test;
 
 import com.xpy.domain.Products;
 import com.xpy.utils.JDBCUtils;
 
+/**
+ * ProductDao
+ * @author xpy
+ *
+ */
 public class ProductsDao {
 	
-	@Test
+	/**
+	 * 插入新的作品
+	 * @param products
+	 * @return
+	 * @throws SQLException
+	 */
 	public int insert(Products products) throws SQLException {
 		QueryRunner qr = new QueryRunner(JDBCUtils.getDataSource());
 		String sql = "insert into products(product_name,banji,author,department,product_path,type,tel) values(?,?,?,?,?,?,?)";
@@ -34,7 +43,11 @@ public class ProductsDao {
 		return query;
 	}
 	
-	@Test
+	/**
+	 * 查询数据库中作品的最大ID
+	 * @return
+	 * @throws SQLException
+	 */
 	public int selectProductMaxId() throws SQLException {
 		QueryRunner qr = new QueryRunner(JDBCUtils.getDataSource());
 		String sql = "select max(id) from products";
@@ -44,4 +57,16 @@ public class ProductsDao {
 		}
 		return (int) query[0];
 	}
+	
+	/**
+	 * 根据作品类型查询作品
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<Products> selectProductsByType(String type) throws SQLException {
+		QueryRunner qr = new QueryRunner(JDBCUtils.getDataSource());
+		String sql = "select * from products where type='"+type+"'";
+		List<Products> query = qr.query(sql, new BeanListHandler<Products>(Products.class));
+		return query;
+	} 
 }

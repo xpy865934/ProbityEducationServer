@@ -2,6 +2,11 @@ package com.xpy.domain;
 
 import java.util.Date;
 
+/**
+ * ÁôÑÔÏûÏ¢Àà
+ * @author xpy
+ *
+ */
 public class Message {
 	private String id;
 	private String name;

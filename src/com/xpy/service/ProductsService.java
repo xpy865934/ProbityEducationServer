@@ -6,6 +6,11 @@ import java.util.List;
 import com.xpy.dao.ProductsDao;
 import com.xpy.domain.Products;
 
+/**
+ * 作品Service
+ * @author xpy
+ *
+ */
 public class ProductsService {
 	/**
 	 * 查询所有的作品
@@ -30,9 +35,25 @@ public class ProductsService {
 		return insert;
 	}
 	
-	public int selectMessageMaxId() throws SQLException {
+	/**
+	 * 查询作品的最大ID
+	 * @return
+	 * @throws SQLException
+	 */
+	public int selectProductMaxId() throws SQLException {
 		ProductsDao productsDao = new ProductsDao();
 		int id = productsDao.selectProductMaxId();
 		return id;
+	}
+	
+	/**
+	 * 根据作品类型查询作品
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<Products> selectProductsByType(String type) throws SQLException {
+		ProductsDao productsDao = new ProductsDao();
+		List<Products> allProducts = productsDao.selectProductsByType(type);
+		return allProducts;
 	}
 }

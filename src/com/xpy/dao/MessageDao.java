@@ -3,18 +3,24 @@ package com.xpy.dao;
 import java.io.ByteArrayInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.sql.Timestamp;
-
-import org.apache.commons.dbutils.QueryRunner;
-import org.apache.commons.dbutils.handlers.ArrayHandler;
-import org.junit.Test;
 
 import com.xpy.domain.Message;
 import com.xpy.utils.ImageUtils;
 import com.xpy.utils.JDBCUtils;
 
+/**
+ * MessageDao
+ * @author xpy
+ *
+ */
 public class MessageDao {
+	/**
+	 * ≤Â»Î¡Ù—‘–≈œ¢
+	 * @param message
+	 * @return
+	 * @throws Exception
+	 */
 	public int insert(Message message) throws Exception {
 		ByteArrayInputStream in = new ByteArrayInputStream(ImageUtils.DecodeStrToImage(message.getImage()));
 		Connection conn = JDBCUtils.getConnection();

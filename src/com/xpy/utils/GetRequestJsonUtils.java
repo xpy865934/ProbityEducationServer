@@ -4,6 +4,11 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * 获取request中的get和post请求的json
+ * @author xpy
+ *
+ */
 public class GetRequestJsonUtils {
 
     /***
