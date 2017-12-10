@@ -34,7 +34,7 @@ public class InitProductsDbServlet extends HttpServlet {
 		//获取文件路径
 		String t = Thread.currentThread().getContextClassLoader().getResource("").getPath();
 		int num = t.indexOf(".metadata");
-		String id="";
+		int id = 0;
 		String path = t.substring(1, num).replace('/', '\\') + "ProbityEducationServer\\WebContent\\products_image";
 
 		File file = new File(path);
@@ -47,7 +47,7 @@ public class InitProductsDbServlet extends HttpServlet {
 			Products products = new Products();
 			
 			try {
-				id = String.valueOf(productsService.selectProductMaxId()+1);
+				id = productsService.selectProductMaxId()+1;
 				products.setId(id);
 			} catch (SQLException e1) {
 				System.err.println("获取ProductMaxId出错！");
@@ -68,7 +68,7 @@ public class InitProductsDbServlet extends HttpServlet {
 			products.setProduct_path(getServletContext().getContextPath() + "/products_image/"+newFile.getName());
 			try {
 				productsService.insertProduct(products);
-			} catch (SQLException e) {
+			} catch (Exception e) {
 				System.err.println("插入新作品信息出错！");
 				e.printStackTrace();
 			}

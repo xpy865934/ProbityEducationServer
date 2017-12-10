@@ -17,7 +17,7 @@ public class ProductsService {
 	 * @return
 	 * @throws SQLException
 	 */
-	public List<Products> selectAllProducts() throws SQLException {
+	public List<Products> selectAllProducts() throws Exception {
 		ProductsDao productsDao = new ProductsDao();
 		List<Products> allProducts = productsDao.selectAllProducts();
 		return allProducts;
@@ -29,7 +29,7 @@ public class ProductsService {
 	 * @return
 	 * @throws SQLException
 	 */
-	public int insertProduct(Products products) throws SQLException {
+	public int insertProduct(Products products) throws Exception {
 		ProductsDao productsDao = new ProductsDao();
 		int insert = productsDao.insert(products);
 		return insert;
@@ -51,7 +51,7 @@ public class ProductsService {
 	 * @return
 	 * @throws SQLException
 	 */
-	public List<Products> selectProductsByType(String type) throws SQLException {
+	public List<Products> selectProductsByType(String type) throws Exception {
 		ProductsDao productsDao = new ProductsDao();
 		List<Products> allProducts = productsDao.selectProductsByType(type);
 		return allProducts;

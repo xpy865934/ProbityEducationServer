@@ -6,7 +6,7 @@ package com.xpy.domain;
  *
  */
 public class Products {
-	private String id;
+	private Integer id;
 	private String product_name;
 	private String banji;
 	private String author;
@@ -14,10 +14,11 @@ public class Products {
 	private String product_path;
 	private String type;
 	private String tel;
-	public String getId() {
+	private Integer version;
+	public Integer getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getProduct_name() {
@@ -61,5 +62,11 @@ public class Products {
 	}
 	public void setTel(String tel) {
 		this.tel = tel;
+	}
+	public Integer getVersion() {
+		return version;
+	}
+	public void setVersion(Integer version) {
+		this.version = version;
 	}	
 }

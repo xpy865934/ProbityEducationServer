@@ -47,7 +47,7 @@ public class ProductsServlet extends HttpServlet {
 			//构造返回的json
 			json="{\"result\":"+json+"}";
 			response.getWriter().write(json);			
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			System.err.println("查询作品信息出错！");
 			e.printStackTrace();
 		}

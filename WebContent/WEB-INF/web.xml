@@ -16,13 +16,13 @@
     <servlet-class>com.xpy.action.ProductsServlet</servlet-class>
   </servlet>
   <servlet-mapping>
+    <servlet-name>ProductsServlet</servlet-name>
+    <url-pattern>/products</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
     <servlet-name>default</servlet-name>
     <url-pattern>*.jpg</url-pattern>
     <url-pattern>*.JPG</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>ProductsServlet</servlet-name>
-    <url-pattern>/products</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
