@@ -3,8 +3,13 @@ package com.xpy.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 import com.xpy.dao.ProductsDao;
 import com.xpy.domain.Products;
+import com.xpy.utils.HibernateUtils;
 
 /**
  * 作品Service
@@ -18,8 +23,17 @@ public class ProductsService {
 	 * @throws SQLException
 	 */
 	public List<Products> selectAllProducts() throws Exception {
-		ProductsDao productsDao = new ProductsDao();
-		List<Products> allProducts = productsDao.selectAllProducts();
+		Session session = HibernateUtils.getCurrentSession();
+		Transaction tr = session.beginTransaction();
+		List<Products> allProducts = null;
+		try {
+			ProductsDao productsDao = new ProductsDao();
+			allProducts = productsDao.selectAllProducts();
+			tr.commit();
+		} catch (Exception e) {
+			tr.rollback();
+			throw new Exception("查询全部作品数据错误！");
+		}
 		return allProducts;
 	}
 	
@@ -30,8 +44,17 @@ public class ProductsService {
 	 * @throws SQLException
 	 */
 	public int insertProduct(Products products) throws Exception {
-		ProductsDao productsDao = new ProductsDao();
-		int insert = productsDao.insert(products);
+		Session session = HibernateUtils.getCurrentSession();
+		Transaction tr = session.beginTransaction();
+		int insert = 0;
+		try {
+			ProductsDao productsDao = new ProductsDao();
+			insert = productsDao.insert(products);
+			tr.commit();
+		} catch (Exception e) {
+			tr.rollback();
+			throw new Exception("作品数据保存错误！");
+		}
 		return insert;
 	}
 	
@@ -52,8 +75,17 @@ public class ProductsService {
 	 * @throws SQLException
 	 */
 	public List<Products> selectProductsByType(String type) throws Exception {
-		ProductsDao productsDao = new ProductsDao();
-		List<Products> allProducts = productsDao.selectProductsByType(type);
+		Session session = HibernateUtils.getCurrentSession();
+		Transaction tr = session.beginTransaction();
+		List<Products> allProducts =null;
+		try {
+			ProductsDao productsDao = new ProductsDao();
+			allProducts = productsDao.selectProductsByType(type);
+			tr.commit();
+		} catch (Exception e) {
+			tr.rollback();
+			throw new Exception("按类型查询全部作品数据错误！");
+		}
 		return allProducts;
 	}
 }

@@ -30,24 +30,9 @@ public class ProductsDao {
 	 * @throws SQLException
 	 */
 	public int insert(Products products) throws Exception {
-		Session session = null;
-		Transaction tr = null;
+		Session session  = HibernateUtils.getCurrentSession();
 		int update = 0;
-		try {
-			session = HibernateUtils.getSession();
-			tr = session.beginTransaction();
-			update = (int) session.save(products);
-		} catch (Exception e) {
-			tr.rollback();
-			throw new Exception("作品数据保存错误！");
-		} finally {
-			if (tr != null) {
-				tr.commit();
-			}
-			if (session != null) {
-				session.close();
-			}
-		}
+		update = (int) session.save(products);
 		return update;
 
 		// QueryRunner qr = new QueryRunner(JDBCUtils.getDataSource());
@@ -67,26 +52,10 @@ public class ProductsDao {
 	 * @throws SQLException
 	 */
 	public List<Products> selectAllProducts() throws Exception {
-		Session session = null;
-		Transaction tr = null;
-		int update = 0;
+		Session session = HibernateUtils.getCurrentSession();
 		List<Products> list = null;
-		try {
-			session = HibernateUtils.getSession();
-			tr = session.beginTransaction();
-			Criteria criteria = session.createCriteria(Products.class);
-			list = criteria.list();
-		} catch (Exception e) {
-			tr.rollback();
-			throw new Exception("查询全部作品数据错误！");
-		} finally {
-			if (tr != null) {
-				tr.commit();
-			}
-			if (session != null) {
-				session.close();
-			}
-		}
+		Criteria criteria = session.createCriteria(Products.class);
+		list = criteria.list();
 		return list;
 
 //		QueryRunner qr = new QueryRunner(JDBCUtils.getDataSource());
@@ -118,27 +87,11 @@ public class ProductsDao {
 	 * @throws SQLException
 	 */
 	public List<Products> selectProductsByType(String type) throws Exception {
-		Session session = null;
-		Transaction tr = null;
-		int update = 0;
+		Session session = HibernateUtils.getCurrentSession();
 		List<Products> list = null;
-		try {
-			session = HibernateUtils.getSession();
-			tr = session.beginTransaction();
-			Criteria criteria = session.createCriteria(Products.class);
-			criteria.add(Restrictions.eq("type", type));
-			list = criteria.list();
-		} catch (Exception e) {
-			tr.rollback();
-			throw new Exception("按类型查询全部作品数据错误！");
-		} finally {
-			if (tr != null) {
-				tr.commit();
-			}
-			if (session != null) {
-				session.close();
-			}
-		}
+		Criteria criteria = session.createCriteria(Products.class);
+		criteria.add(Restrictions.eq("type", type));
+		list = criteria.list();
 		return list;
 		
 //		QueryRunner qr = new QueryRunner(JDBCUtils.getDataSource());
