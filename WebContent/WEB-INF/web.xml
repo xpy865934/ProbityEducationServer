@@ -1,47 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
-  <display-name>ProbityEducationServer</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
-  <servlet>
-    <description></description>
-    <display-name>ProductsServlet</display-name>
-    <servlet-name>ProductsServlet</servlet-name>
-    <servlet-class>com.xpy.action.ProductsServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ProductsServlet</servlet-name>
-    <url-pattern>/products</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>default</servlet-name>
-    <url-pattern>*.jpg</url-pattern>
-    <url-pattern>*.JPG</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>InitProductsDbServlet</display-name>
-    <servlet-name>InitProductsDbServlet</servlet-name>
-    <servlet-class>com.xpy.action.InitProductsDbServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>InitProductsDbServlet</servlet-name>
-    <url-pattern>/initproducts</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>InsertMessageServlet</display-name>
-    <servlet-name>InsertMessageServlet</servlet-name>
-    <servlet-class>com.xpy.action.InsertMessageServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>InsertMessageServlet</servlet-name>
-    <url-pattern>/insertmessage</url-pattern>
-  </servlet-mapping>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+	<!-- 配置struts2核心过滤器 -->
+	<filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<display-name>ProbityEducationServer</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+	<servlet>
+		<description></description>
+		<display-name>ProductsServlet</display-name>
+		<servlet-name>ProductsServlet</servlet-name>
+		<servlet-class>com.xpy.servlet.ProductsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ProductsServlet</servlet-name>
+		<url-pattern>/products</url-pattern>
+	</servlet-mapping>
+	<!-- 使用struts2不能配置default,否则会报404错误 -->
+	<!-- <servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.jpg</url-pattern>
+		<url-pattern>*.JPG</url-pattern>
+		<url-pattern>*.PNG</url-pattern>
+		<url-pattern>*.png</url-pattern>
+	</servlet-mapping> -->
+	<servlet>
+		<description></description>
+		<display-name>InitProductsDbServlet</display-name>
+		<servlet-name>InitProductsDbServlet</servlet-name>
+		<servlet-class>com.xpy.servlet.InitProductsDbServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>InitProductsDbServlet</servlet-name>
+		<url-pattern>/initproducts</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>InsertMessageServlet</display-name>
+		<servlet-name>InsertMessageServlet</servlet-name>
+		<servlet-class>com.xpy.servlet.InsertMessageServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>InsertMessageServlet</servlet-name>
+		<url-pattern>/insertmessage</url-pattern>
+	</servlet-mapping>
 </web-app>
