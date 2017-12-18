@@ -57,12 +57,24 @@ public class ProductsAction extends ActionSupport{
 				e1.printStackTrace();
 			}
 			try {
-				products.setProduct_name(params[0]);
-				products.setBanji(params[1]);
-				products.setAuthor(params[2]);
-				products.setDepartment(params[3]);
-				products.setType(params[4]);
-				products.setTel(params[5]);
+				if(params[0].trim().length()!=0) {
+					products.setProduct_name(params[0]);
+				}
+				if(params[1].trim().length()!=0) {
+					products.setBanji(params[1]);
+				}
+				if(params[2].trim().length()!=0) {
+					products.setAuthor(params[2]);
+				}
+				if(params[3].trim().length()!=0) {
+					products.setDepartment(params[3]);
+				}
+				if(params[4].trim().length()!=0) {
+					products.setType(params[4]);
+				}
+				if(params[5].trim().length()!=0) {
+					products.setTel(params[5]);
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println(name);
@@ -73,7 +85,7 @@ public class ProductsAction extends ActionSupport{
 
 			// ÖØÃüÃû
 			file2.renameTo(newFile);
-			products.setProduct_path(ServletActionContext.getServletContext().getContextPath() + "/products_image/" + newFile.getName());
+			products.setProduct_path("/products_image/" + newFile.getName());
 			try {
 				productsService.insertProduct(products);
 			} catch (Exception e) {
